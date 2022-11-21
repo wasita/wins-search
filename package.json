@@ -29,7 +29,8 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@fontsource/fira-mono": "^4.5.0"
+		"@fontsource/fira-mono": "^4.5.0",
+		"convert-excel-to-json": "^1.7.0"
 	},
 	"config": {
 		"commitizen": {
