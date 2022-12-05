@@ -1,6 +1,5 @@
 d3.csv("wins_members_list.csv").then(function (data) {
-    console.log(data);
-    // wins_members_list
+  console.log(data);
 
   var members = data;
 
@@ -20,50 +19,61 @@ d3.csv("wins_members_list.csv").then(function (data) {
 
     console.log(inputValue.length);///
     console.log(members);
-    // TODO: figure out terms that would lead to no results
+
+    // FUTURE TODO IF NEEED: figure out terms that would lead to no results
     // if (inputValue.length < 6){
     //   d3.select("p").classed('noresults2', true).html("<center><strong>Please try using more than 5 characters to avoid too many results!</strong>")
     //   inputValue = "Something to give no results"
     // }
-      var filteredData = members.filter(members => members.full_name.toLowerCase().trim().includes(inputValue));
-    console.log("filteredData", filteredData);
-    console.log(filteredData.length)
-    if (filteredData.length === 0 && inputValue !== "Something to give no results"){
+
+    // this filters based on full_name col
+    var nameFilteredData = members.filter(members => members.full_name.toLowerCase().trim().includes(inputValue));
+    console.log("nameFilteredData", nameFilteredData);
+    // console.log(nameFilteredData.length)
+
+    var affilitationFilteredData = members.filter(members => members.affiliation_institution.toLowerCase().trim().includes(inputValue));
+    console.log("affilitationFilteredData", affilitationFilteredData);
+    // console.log(affilitationFilteredData.length)
+
+    var researchKeywordsFilteredData = members.filter(members => members.network_interests.toLowerCase().trim().includes(inputValue));
+    console.log("researchKeywordsFilteredData", researchKeywordsFilteredData);
+    // console.log(researchKeywordsFilteredData.length)
+
+    // check which col filtered data to use
+    if (nameFilteredData.length > 0) {
+      var filteredData = nameFilteredData;
+    } else if (affilitationFilteredData.length > 0) {
+      var filteredData = affilitationFilteredData;
+    } else if (researchKeywordsFilteredData.length > 0) {
+      var filteredData = researchKeywordsFilteredData;
+    }
+    else if (nameFilteredData.length === 0 && affilitationFilteredData.length === 0 && researchKeywordsFilteredData.length === 0 && inputValue !== "Something to give no results"){
       d3.select("p").classed('noresults', true).html("<center><strong>No results. Please check your spelling!</strong>")
     }
-    output = _.sortBy(filteredData, 'full_name')
 
-    for (var i = 0; i < filteredData.length; i++) {
-      // console.log(output[i]['original_title'])
-      // console.log(output[i]['avg_vote'])
-      // d3.select("tbody>tr>td").text(output[i]['original_title']);
+    const filteredLength = filteredData?.length || 0;
 
-      // TODO: calculate years since jioned
-      console.log("timestamp", output[i]['timestamp'])
-      
-      d3.select("tbody").insert("tr").html("<td>" + output[i]['full_name'] + "</td>" +
-        "<td>" + (output[i]['pronouns']) + "</td>" +
-        "<td>" + (output[i]['affiliation_institution']) + "</td>" +
-        "<td>" + (output[i]['timestamp']) + "</td>" +
-        "<td>" + (output[i]['online_profiles']) + "</td>" +
-        "<td>" + (output[i]['network_interests']) + "</td>")
-    }
-  };
+    if (filteredLength !== 0) {
+      output = _.sortBy(filteredData, 'full_name')
+      for (var i = 0; i < filteredData.length; i++) {
+
+        // calculate years since jioned
+        const joinDate = new Date(output[i]['timestamp']);
+        const todayDate = new Date();
+        const dateDiff = calcDate(todayDate, joinDate);
+
+        // TODO: render output[i]['online_profiles'] as href links
+        // likely requires to iterate through online_profiles
+        
+        d3.select("tbody").insert("tr").html("<td>" + output[i]['full_name'] + "</td>" +
+          "<td>" + (output[i]['pronouns']) + "</td>" +
+          "<td>" + (output[i]['affiliation_institution']) + "</td>" +
+          "<td>" + (dateDiff) + "</td>" +
+          "<td>" + (convertLinks(output[i]['online_profiles'])) + "</td>" +
+          "<td>" + (output[i]['network_interests']) + "</td>")
+      }
+      }
+  }
   window.resizeTo(screen.width,screen.height)
 
-
 });
-
-                //   <!-- <th scope="col">#</th>
-                //   <th scope="col">Movie</th>
-                //   <th scope="col">Rating</th>
-                //   <th scope="col">Year</th>
-                //   <th scope="col">Director</th>
-                //   <th scope="col">Description</th> -->
-
-                //   <th scope="col">Name</th>
-                //   <th scope="col">Pronouns</th>
-                //   <th scope="col">Affiliation</th>
-                //   <th scope="col">Year</th>
-                //   <th scope="col">Website</th>
-                //   <th scope="col">Research Keywords</th>
