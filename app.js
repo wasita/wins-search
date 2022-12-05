@@ -48,7 +48,7 @@ d3.csv("wins_members_list.csv").then(function (data) {
       var filteredData = researchKeywordsFilteredData;
     }
     else if (nameFilteredData.length === 0 && affilitationFilteredData.length === 0 && researchKeywordsFilteredData.length === 0 && inputValue !== "Something to give no results"){
-      d3.select("p").classed('noresults', true).html("<center><strong>No results. Please check your spelling!</strong>")
+      d3.select("p").classed('noresults', true).html("<center><strong>No results. Check your spelling or try a different search term</strong>")
     }
 
     const filteredLength = filteredData?.length || 0;
