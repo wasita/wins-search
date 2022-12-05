@@ -1,5 +1,5 @@
 d3.csv("wins_members_list.csv").then(function (data) {
-  console.log(data);
+  // console.log(data);
 
   var members = data;
 
