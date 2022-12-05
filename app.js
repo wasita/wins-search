@@ -20,10 +20,11 @@ d3.csv("wins_members_list.csv").then(function (data) {
 
     console.log(inputValue.length);///
     console.log(members);
-    if (inputValue.length < 6){
-      d3.select("p").classed('noresults2', true).html("<center><strong>Please try using more than 5 characters to avoid too many results!</strong>")
-      inputValue = "Something to give no results"
-    }
+    // TODO: figure out terms that would lead to no results
+    // if (inputValue.length < 6){
+    //   d3.select("p").classed('noresults2', true).html("<center><strong>Please try using more than 5 characters to avoid too many results!</strong>")
+    //   inputValue = "Something to give no results"
+    // }
       var filteredData = members.filter(members => members.full_name.toLowerCase().trim().includes(inputValue));
     console.log("filteredData", filteredData);
     console.log(filteredData.length)
@@ -36,8 +37,17 @@ d3.csv("wins_members_list.csv").then(function (data) {
       // console.log(output[i]['original_title'])
       // console.log(output[i]['avg_vote'])
       // d3.select("tbody>tr>td").text(output[i]['original_title']);
-      d3.select("tbody").insert("tr").html("<td>"+[i+1]+"</td>"+"<td>"+"<a href=https://www.imdb.com/title/"+output[i]['imdb_title_id']+" target='_blank'>"+(output[i]['original_title'])+"</a>"
-      + "</td>" +"<td>" +(output[i]['full_name'])+"</td>" +"<td>" +(output[i]['year'])+"</td>"  +"<td>" +(output[i]['director'])+"</td>"+"<td>" +(output[i]['description'])+"</td>") }
+
+      // TODO: calculate years since jioned
+      console.log("timestamp", output[i]['timestamp'])
+      
+      d3.select("tbody").insert("tr").html("<td>" + output[i]['full_name'] + "</td>" +
+        "<td>" + (output[i]['pronouns']) + "</td>" +
+        "<td>" + (output[i]['affiliation_institution']) + "</td>" +
+        "<td>" + (output[i]['timestamp']) + "</td>" +
+        "<td>" + (output[i]['online_profiles']) + "</td>" +
+        "<td>" + (output[i]['network_interests']) + "</td>")
+    }
   };
   window.resizeTo(screen.width,screen.height)
 
