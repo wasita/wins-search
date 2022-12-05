@@ -7,18 +7,12 @@ d3.csv("wins_members_list.csv").then(function (data) {
 
   var form = d3.select("#form");
 
-  button.on("click", runEnter);
-  form.on("submit", runEnter);
-
-  function runEnter() {
+  const runEnter = () => {
     d3.select("tbody").html("")
     d3.selectAll("p").classed('noresults', true).html("")
     d3.event.preventDefault();
     var inputElement = d3.select("#user-input");
     var inputValue = inputElement.property("value").toLowerCase().trim();
-
-    console.log(inputValue.length);///
-    console.log(members);
 
     // FUTURE TODO IF NEEED: figure out terms that would lead to no results
     // if (inputValue.length < 6){
@@ -27,17 +21,9 @@ d3.csv("wins_members_list.csv").then(function (data) {
     // }
 
     // this filters based on full_name col
-    var nameFilteredData = members.filter(members => members.full_name.toLowerCase().trim().includes(inputValue));
-    console.log("nameFilteredData", nameFilteredData);
-    // console.log(nameFilteredData.length)
-
-    var affilitationFilteredData = members.filter(members => members.affiliation_institution.toLowerCase().trim().includes(inputValue));
-    console.log("affilitationFilteredData", affilitationFilteredData);
-    // console.log(affilitationFilteredData.length)
-
-    var researchKeywordsFilteredData = members.filter(members => members.network_interests.toLowerCase().trim().includes(inputValue));
-    console.log("researchKeywordsFilteredData", researchKeywordsFilteredData);
-    // console.log(researchKeywordsFilteredData.length)
+    const nameFilteredData = members.filter(members => members.full_name.toLowerCase().trim().includes(inputValue));
+    const affilitationFilteredData = members.filter(members => members.affiliation_institution.toLowerCase().trim().includes(inputValue));
+    const researchKeywordsFilteredData = members.filter(members => members.network_interests.toLowerCase().trim().includes(inputValue));
 
     // check which col filtered data to use
     if (nameFilteredData.length > 0) {
@@ -74,6 +60,9 @@ d3.csv("wins_members_list.csv").then(function (data) {
       }
       }
   }
-  window.resizeTo(screen.width,screen.height)
-
+  window.resizeTo(screen.width, screen.height)
+  
+  button.on("click", runEnter);
+  form.on("submit", runEnter);
 });
+
