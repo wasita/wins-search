@@ -46,7 +46,7 @@ d3.csv("wins_members_list.csv").then(function (data) {
         // calculate years since jioned
         const joinDate = new Date(output[i]['timestamp']);
         const todayDate = new Date();
-        joinDate.format("mmmm yyyy")
+        // joinDate.format("mmmm yyyy")
         const dateDiff = calcDate(todayDate, joinDate);
 
         // TODO: render output[i]['online_profiles'] as href links
