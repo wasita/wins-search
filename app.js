@@ -46,16 +46,17 @@ d3.csv("wins_members_list.csv").then(function (data) {
         // calculate years since jioned
         const joinDate = new Date(output[i]['timestamp']);
         const todayDate = new Date();
+        joinDate.format("mmmm yyyy")
         const dateDiff = calcDate(todayDate, joinDate);
 
         // TODO: render output[i]['online_profiles'] as href links
         // likely requires to iterate through online_profiles
         
-        d3.select("tbody").insert("tr").html("<td align=left>Name: " + output[i]['full_name'] + "<br>"
-            + "Affiliation: " + (output[i]['affiliation_institution']) + "<br>"
-            + "WiNS member since: " + (joinDate) + "<br>"
-            + "Links: " + (convertLinks(output[i]['online_profiles'])) + "<br>"
-            + "Research keywords: " + (output[i]['network_interests']) + "<br>&nbsp;"
+        d3.select("tbody").insert("tr").html("<td align=left><b>Name: " + output[i]['full_name'] + "</b><br>"
+            + "<b>Affiliation: </b>" + (output[i]['affiliation_institution']) + "<br>"
+            + "<b>Research keywords: </b>" + (output[i]['network_interests']) + "<br>"
+            + "<b>Links: </b>" + (convertLinks(output[i]['online_profiles'])) + "<br>"
+            + "<b>WiNS member since: </b>" + (joinDate) + "<br>&nbsp;"
             +"</td>")
         
       }
