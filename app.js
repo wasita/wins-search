@@ -46,21 +46,24 @@ d3.csv("wins_members_list.csv").then(function (data) {
         // calculate years since jioned
         const joinDate = new Date(output[i]['timestamp']);
         const todayDate = new Date();
-        const dateDiff = calcDate(todayDate, joinDate);
+        // joinDate.format("mmmm yyyy");
+        const joinDateMY = (joinDate.getMonth() + 1) + '/' + joinDate.getFullYear()
+        // const dateDiff = calcDate(todayDate, joinDate);
 
         // TODO: render output[i]['online_profiles'] as href links
         // likely requires to iterate through online_profiles
         
-        d3.select("tbody").insert("tr").html("<td>" + output[i]['full_name'] + "</td>" +
-          "<td>" + (output[i]['pronouns']) + "</td>" +
-          "<td>" + (output[i]['affiliation_institution']) + "</td>" +
-          "<td>" + (dateDiff) + "</td>" +
-          "<td>" + (convertLinks(output[i]['online_profiles'])) + "</td>" +
-          "<td>" + (output[i]['network_interests']) + "</td>")
+        d3.select("tbody").insert("tr").html("<td align=left><b>Name: " + output[i]['full_name'] + "</b><br>"
+            + "<b>Affiliation: </b>" + (output[i]['affiliation_institution']) + "<br>"
+            + "<b>Research keywords: </b>" + (output[i]['network_interests']) + "<br>"
+            + "<b>Links: </b>" + (convertLinks(output[i]['online_profiles'])) + "<br>"
+            + "<b>WiNS member since: </b>" + (joinDateMY) + "<br>&nbsp;"
+            +"</td>")
+        
       }
       }
   }
-  window.resizeTo(screen.width, screen.height)
+  // window.resizeTo(screen.width, screen.height)
   
   button.on("click", runEnter);
   form.on("submit", runEnter);
