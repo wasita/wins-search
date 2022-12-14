@@ -51,12 +51,13 @@ d3.csv("wins_members_list.csv").then(function (data) {
         // TODO: render output[i]['online_profiles'] as href links
         // likely requires to iterate through online_profiles
         
-        d3.select("tbody").insert("tr").html("<tr><td> Name:" + output[i]['full_name'] + "</td></tr>" +
-          "<tr><td> Pronouns: " + (output[i]['pronouns']) + "</td></tr>" +
-          "<tr><td> Affiliation: " + (output[i]['affiliation_institution']) + "</td></tr>" +
-          "<tr><td> Years since joined: " + (dateDiff) + "</td></tr>" +
-          "<tr><td> Links: " + (convertLinks(output[i]['online_profiles'])) + "</td></tr>" +
-          "<tr><td> Research keywords: " + (output[i]['network_interests']) + "</td></tr><tr><td>&nbsp;</td></tr>")
+        d3.select("tbody").insert("tr").html("<td> Name:" + output[i]['full_name'] + "</td>")
+        d3.select("tbody").insert("tr").html("<td> Affiliation: " + (output[i]['affiliation_institution']) + "</td>")
+        d3.select("tbody").insert("tr").html("<td> Years since joined: " + (dateDiff) + "</td>")
+        d3.select("tbody").insert("tr").html("<td> Links: " + (convertLinks(output[i]['online_profiles'])) + "</td>")
+        d3.select("tbody").insert("tr").html("<td> Research keywords: " + (output[i]['network_interests']) + "</td>")
+        d3.select("tbody").insert("tr").html("&nbsp;")
+
       }
       }
   }
