@@ -51,9 +51,9 @@ d3.csv("wins_members_list.csv").then(function (data) {
         // TODO: render output[i]['online_profiles'] as href links
         // likely requires to iterate through online_profiles
         
-        d3.select("tbody").insert("tr").html("<td align=left> Name:" + output[i]['full_name'] + "<br>"
+        d3.select("tbody").insert("tr").html("<td align=left>Name: " + output[i]['full_name'] + "<br>"
             + "Affiliation: " + (output[i]['affiliation_institution']) + "<br>"
-            + "Years since joined: " + (dateDiff) + "<br>"
+            + "WiNS member since: " + (joinDate) + "<br>"
             + "Links: " + (convertLinks(output[i]['online_profiles'])) + "<br>"
             + "Research keywords: " + (output[i]['network_interests']) + "<br>&nbsp;"
             +"</td>")
@@ -61,7 +61,7 @@ d3.csv("wins_members_list.csv").then(function (data) {
       }
       }
   }
-  window.resizeTo(screen.width, screen.height)
+  // window.resizeTo(screen.width, screen.height)
   
   button.on("click", runEnter);
   form.on("submit", runEnter);
