@@ -86,8 +86,8 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
 
 body {
   margin: 0;
-  font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  font-size: 1rem;
+  font-family: "Century Gothic", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-size: 14pt;
   font-weight: 400;
   line-height: 1.5;
   color: #212529;
@@ -112,6 +112,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 p {
+  text-align: justify;
   margin-top: 0;
   margin-bottom: 1rem;
   text-align: center

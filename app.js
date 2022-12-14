@@ -51,12 +51,12 @@ d3.csv("wins_members_list.csv").then(function (data) {
         // TODO: render output[i]['online_profiles'] as href links
         // likely requires to iterate through online_profiles
         
-        d3.select("tbody").insert("tr").html("<td>" + output[i]['full_name'] + "</td>" +
-          "<td>" + (output[i]['pronouns']) + "</td>" +
-          "<td>" + (output[i]['affiliation_institution']) + "</td>" +
-          "<td>" + (dateDiff) + "</td>" +
-          "<td>" + (convertLinks(output[i]['online_profiles'])) + "</td>" +
-          "<td>" + (output[i]['network_interests']) + "</td>")
+        d3.select("tbody").insert("tr").html("<tr><td> Name:" + output[i]['full_name'] + "</td></tr>" +
+          "<tr><td> Pronouns: " + (output[i]['pronouns']) + "</td></tr>" +
+          "<tr><td> Affiliation: " + (output[i]['affiliation_institution']) + "</td></tr>" +
+          "<tr><td> Years since joined: " + (dateDiff) + "</td></tr>" +
+          "<tr><td> Links: " + (convertLinks(output[i]['online_profiles'])) + "</td></tr>" +
+          "<tr><td> Research keywords: " + (output[i]['network_interests']) + "</td></tr><tr><td>&nbsp;</td></tr>")
       }
       }
   }
